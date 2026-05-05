@@ -87,6 +87,8 @@
     .btn-outline:hover { background: rgba(201,162,39,0.1); }
     .btn-green { background: var(--green); color: #fff; }
     .btn-green:hover { opacity: 0.85; }
+    .btn-sync { background: #1a73e8; color: white; }
+    .btn-sync:hover { background: #1557b0; }
     .btn-red { background: transparent; border: 1px solid var(--red); color: var(--red); }
     .btn-red:hover { background: rgba(224,83,83,0.1); }
     .btn-gray { background: rgba(255,255,255,0.08); color: var(--white); border: 1px solid rgba(255,255,255,0.1); }
@@ -144,6 +146,14 @@
     input:focus, select:focus { border-color: var(--gold); }
     input::placeholder { color: var(--gray); }
     select option { background: var(--navy-mid); }
+
+    .token-input {
+      background: #0a1628;
+      border: 1px solid var(--gold);
+      color: var(--gold-pale);
+      font-family: monospace;
+      font-size: 0.75rem;
+    }
 
     .photo-upload-area {
       border: 2px dashed rgba(138,154,181,0.3);
@@ -365,11 +375,12 @@
 <div class="admin-header">
   <div>
     <h1>⚙️ Admin Panel</h1>
-    <p>Manage student records for Intakes 38 &amp; 39</p>
+    <p>Manage student records · Saves directly to GitHub</p>
   </div>
   <div class="admin-actions">
+    <button class="btn btn-sync" onclick="saveToGitHub()">☁️ Save to GitHub</button>
     <button class="btn btn-green" onclick="exportJSON()">⬇ Export JSON</button>
-    <button class="btn btn-gray" onclick="resetToDefault()">↩ Reset to Default</button>
+    <button class="btn btn-gray" onclick="resetToDefault()">↩ Reset</button>
   </div>
 </div>
 
@@ -379,6 +390,16 @@
   <!-- FORM PANEL -->
   <div class="form-panel">
     <div class="panel-title" id="formTitle">➕ Add New Student</div>
+
+    <!-- GitHub Token Setup -->
+    <div class="info-box" style="background:rgba(26,115,232,0.1); border-color:#1a73e8; margin-bottom:1rem; padding:0.75rem;">
+      <div style="font-size:0.7rem; color:#1a73e8; margin-bottom:0.5rem;">🔐 GITHUB SETUP (One Time)</div>
+      <input type="password" id="githubToken" placeholder="Enter GitHub Personal Access Token" class="token-input" style="width:100%; margin-bottom:0.5rem;" />
+      <button class="btn btn-outline" onclick="saveToken()" style="font-size:0.7rem; padding:0.3rem 0.8rem;">Save Token</button>
+      <div style="font-size:0.65rem; color:var(--gray); margin-top:0.5rem;">
+        Get token: GitHub Settings → Developer settings → Personal access tokens → Generate new token (select 'repo' scope)
+      </div>
+    </div>
 
     <input type="hidden" id="editIdx" value="" />
 
@@ -437,9 +458,10 @@
       <label>Photo</label>
       <div class="photo-upload-area" onclick="document.getElementById('fPhoto').click()">
         <span class="upload-icon">📷</span>
-        <div class="upload-text">Click to upload photo<br/><small>JPG, PNG · Max 2MB</small></div>
-        <input type="file" id="fPhoto" accept="image/*" onchange="previewPhoto(event)" style="display:none" />
+        <div class="upload-text">Click to upload photo<br/><small>JPG, PNG · Max 2MB · Saved to GitHub</small></div>
+        <input type="file" id="fPhoto" accept="image/*" onchange="handlePhotoUpload(event)" style="display:none" />
       </div>
+      <div id="uploadStatus" style="font-size:0.75rem; color:#3dba7a; margin-top:0.5rem;"></div>
       <img id="photoPreview" alt="Preview" />
       <input type="hidden" id="fPhotoData" value="" />
     </div>
@@ -449,15 +471,7 @@
       <button class="btn btn-gray" onclick="clearForm()">✕ Clear</button>
     </div>
 
-    <!-- IMPORT -->
     <div style="margin-top:1.5rem;">
-      <div class="import-section">
-        <div class="import-title">📂 Import from JSON</div>
-        <p style="font-size:0.78rem;color:#8a9ab5;margin-bottom:0.75rem;">Import a JSON file of students to merge with existing data.</p>
-        <input type="file" id="importFile" accept=".json" onchange="importJSON(event)" style="display:none" />
-        <button class="btn btn-outline" onclick="document.getElementById('importFile').click()" style="width:100%;justify-content:center;">📤 Choose JSON File</button>
-      </div>
-
       <div class="danger-zone">
         <div style="font-size:0.78rem;font-weight:600;color:#e05353;letter-spacing:1px;text-transform:uppercase;margin-bottom:0.5rem;">⚠ Danger Zone</div>
         <p style="font-size:0.78rem;color:#8a9ab5;margin-bottom:0.75rem;">This will clear all locally-stored changes.</p>
@@ -516,7 +530,7 @@
           </tr>
         </thead>
         <tbody id="tableBody"></tbody>
-      </table>
+       </table>
     </div>
   </div>
 </div>
@@ -536,16 +550,48 @@
 <div id="toast"></div>
 
 <script>
+// GitHub Configuration
+const GITHUB_USER = 'lwresearchdata';
+const GITHUB_REPO = 'kdu-mech-engineering';
+const GITHUB_PATH = 'students_data.json';
+let githubToken = localStorage.getItem('github_token') || '';
+
 let students = [];
 let pendingDeleteIdx = null;
+
+// Load saved token on startup
+function loadToken() {
+  const saved = localStorage.getItem('github_token');
+  if (saved) {
+    githubToken = saved;
+    document.getElementById('githubToken').value = '••••••••';
+  }
+}
+
+function saveToken() {
+  const token = document.getElementById('githubToken').value;
+  if (token && token.length > 10) {
+    githubToken = token;
+    localStorage.setItem('github_token', token);
+    toast('✓ GitHub token saved!', '#3dba7a');
+    document.getElementById('githubToken').value = '••••••••';
+  } else {
+    toast('Please enter a valid token', '#e05353');
+  }
+}
 
 async function loadData() {
   const stored = localStorage.getItem('kdu_students');
   if (stored) {
     students = JSON.parse(stored);
   } else {
-    const res = await fetch('students_data.json');
-    students = await res.json();
+    try {
+      const res = await fetch('students_data.json');
+      students = await res.json();
+    } catch(e) {
+      students = [];
+      toast('Could not load students_data.json', '#e05353');
+    }
   }
   renderTable();
 }
@@ -562,21 +608,87 @@ function toast(msg, color = '#3dba7a') {
   setTimeout(() => t.style.display = 'none', 2500);
 }
 
+// ---- SAVE DIRECTLY TO GITHUB ----
+async function saveToGitHub() {
+  if (!githubToken) {
+    toast('❌ Please enter your GitHub token first', '#e05353');
+    return;
+  }
+
+  toast('☁️ Saving to GitHub...', '#1a73e8');
+  
+  try {
+    // Get current file SHA
+    let sha = '';
+    const fileInfo = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_PATH}`, {
+      headers: { 'Authorization': `token ${githubToken}` }
+    });
+    
+    if (fileInfo.ok) {
+      const data = await fileInfo.json();
+      sha = data.sha;
+    }
+    
+    // Save new content
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(students, null, 2))));
+    
+    const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_PATH}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${githubToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Update student data from Admin Panel',
+        content: content,
+        sha: sha
+      })
+    });
+    
+    if (response.ok) {
+      toast('✅ Saved to GitHub! Website will update in 1-2 minutes', '#3dba7a');
+      save(); // Also save to localStorage
+    } else {
+      throw new Error('Save failed');
+    }
+  } catch (error) {
+    toast('❌ Save failed. Check your token and try again', '#e05353');
+  }
+}
+
 // ---- PHOTO ----
-function previewPhoto(e) {
-  const file = e.target.files[0];
+function handlePhotoUpload(event) {
+  const file = event.target.files[0];
   if (!file) return;
   if (file.size > 2 * 1024 * 1024) { toast('Photo must be under 2MB', '#e05353'); return; }
+  
   const reader = new FileReader();
   reader.onload = ev => {
-    document.getElementById('photoPreview').src = ev.target.result;
-    document.getElementById('photoPreview').style.display = 'block';
-    document.getElementById('fPhotoData').value = ev.target.result;
+    // Compress photo
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const MAX = 400;
+      let w = img.width, h = img.height;
+      if (w > h && w > MAX) { h = h * MAX / w; w = MAX; }
+      else if (h > MAX) { w = w * MAX / h; h = MAX; }
+      canvas.width = w;
+      canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      const compressed = canvas.toDataURL('image/jpeg', 0.75);
+      
+      document.getElementById('photoPreview').src = compressed;
+      document.getElementById('photoPreview').style.display = 'block';
+      document.getElementById('fPhotoData').value = compressed;
+      document.getElementById('uploadStatus').textContent = '✓ Photo ready';
+      toast('✓ Photo loaded');
+    };
+    img.src = ev.target.result;
   };
   reader.readAsDataURL(file);
 }
 
-// ---- FORM ----
+// ---- FORM FUNCTIONS ----
 function clearForm() {
   document.getElementById('editIdx').value = '';
   document.getElementById('fName').value = '';
@@ -585,8 +697,10 @@ function clearForm() {
   document.getElementById('fPhotoData').value = '';
   document.getElementById('photoPreview').style.display = 'none';
   document.getElementById('photoPreview').src = '';
+  document.getElementById('uploadStatus').textContent = '';
   document.getElementById('fIntake').value = '38';
   document.getElementById('fProgram').value = 'ME';
+  document.getElementById('fPhoto').value = '';
   document.getElementById('formTitle').textContent = '➕ Add New Student';
 }
 
@@ -607,10 +721,10 @@ function saveStudent() {
   const editIdx = document.getElementById('editIdx').value;
   if (editIdx !== '') {
     students[parseInt(editIdx)] = student;
-    toast('✓ Student updated successfully');
+    toast('✓ Student updated');
   } else {
     students.push(student);
-    toast('✓ Student added successfully');
+    toast('✓ Student added');
   }
 
   save();
@@ -627,6 +741,7 @@ function editStudent(idx) {
   document.getElementById('fProgram').value = s.program;
   document.getElementById('fIntake').value = String(s.intake);
   document.getElementById('fPhotoData').value = s.photo || '';
+  document.getElementById('uploadStatus').textContent = s.photo ? '✓ Photo already set' : '';
   if (s.photo) {
     document.getElementById('photoPreview').src = s.photo;
     document.getElementById('photoPreview').style.display = 'block';
@@ -654,7 +769,7 @@ function closeConfirm() {
   document.getElementById('confirmModal').style.display = 'none';
 }
 
-// ---- TABLE ----
+// ---- TABLE RENDER ----
 function renderTable() {
   const q = document.getElementById('tableSearch').value.toLowerCase();
   const intake = document.getElementById('tableIntake').value;
@@ -677,8 +792,8 @@ function renderTable() {
           ? `<img src="${s.photo}" class="table-photo" alt="${s.name}" />`
           : `<div class="table-photo-placeholder">🎓</div>`}
       </td>
-      <td style="font-weight:500;">${s.name}</td>
-      <td style="font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;color:#c9a227;">${s.regNo}</td>
+      <td style="font-weight:500;">${escapeHtml(s.name)}</td>
+      <td style="font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;color:#c9a227;">${escapeHtml(s.regNo)}</td>
       <td style="color:#8a9ab5;">Intake ${s.intake}</td>
       <td><span class="prog-badge prog-${s.program.toLowerCase()}">${s.program}</span></td>
       <td>${s.linkedin ? `<a href="${s.linkedin}" target="_blank" style="color:#0a66c2;font-size:0.8rem;text-decoration:none;">🔗 LinkedIn</a>` : '<span style="color:#8a9ab5;font-size:0.8rem;">—</span>'}</td>
@@ -696,28 +811,14 @@ function renderTable() {
   }
 }
 
-// ---- IMPORT ----
-function importJSON(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    try {
-      const data = JSON.parse(ev.target.result);
-      if (!Array.isArray(data)) throw new Error('Invalid format');
-      let added = 0;
-      data.forEach(s => {
-        if (s.name && s.regNo) {
-          const exists = students.find(existing => existing.regNo === s.regNo);
-          if (!exists) { students.push({ name: s.name, regNo: s.regNo, linkedin: s.linkedin||'', program: s.program||'ME', intake: s.intake||38, photo: s.photo||'' }); added++; }
-        }
-      });
-      save();
-      renderTable();
-      toast(`✓ Imported ${added} new students`);
-    } catch { toast('Invalid JSON file', '#e05353'); }
-  };
-  reader.readAsText(file);
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/[&<>]/g, function(m) {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;';
+    return m;
+  });
 }
 
 // ---- EXPORT ----
@@ -728,16 +829,15 @@ function exportJSON() {
   toast('✓ Exported students_data.json');
 }
 
-// ---- RESET ----
 function confirmReset() {
-  if (confirm('Clear all local changes and reload from default data?')) {
+  if (confirm('Clear all local changes?')) {
     localStorage.removeItem('kdu_students');
     location.reload();
   }
 }
 
 function resetToDefault() {
-  if (confirm('Reset to original data from students_data.json?')) {
+  if (confirm('Reset to original data?')) {
     localStorage.removeItem('kdu_students');
     loadData();
     toast('✓ Reset to default data');
@@ -748,6 +848,7 @@ document.getElementById('confirmModal').addEventListener('click', e => {
   if (e.target === document.getElementById('confirmModal')) closeConfirm();
 });
 
+loadToken();
 loadData();
 </script>
 </body>
