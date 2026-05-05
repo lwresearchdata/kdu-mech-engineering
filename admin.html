@@ -610,8 +610,19 @@ function toast(msg, color = '#3dba7a') {
 }
 
 // ---- SAVE DIRECTLY TO GITHUB ----
+// ---- SAVE DIRECTLY TO GITHUB (CORRECTED VERSION) ----
 async function saveToGitHub() {
-  if (!githubToken) {
+  // Check if token is set (either hardcoded or from input)
+  let activeToken = githubToken;
+  if (!activeToken || activeToken === 'YOUR_TOKEN_HERE') {
+    // If no hardcoded token, try to get from the input field
+    const tokenInput = document.getElementById('githubToken');
+    if (tokenInput && tokenInput.value) {
+      activeToken = tokenInput.value;
+    }
+  }
+
+  if (!activeToken || activeToken === 'YOUR_TOKEN_HERE') {
     toast('❌ Please enter your GitHub token first', '#e05353');
     return;
   }
@@ -619,25 +630,34 @@ async function saveToGitHub() {
   toast('☁️ Saving to GitHub...', '#1a73e8');
   
   try {
-    // Get current file SHA
-    let sha = '';
+    // 1. Get current file SHA (using HEADER, not URL parameter)
     const fileInfo = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_PATH}`, {
-      headers: { 'Authorization': `token ${githubToken}` }
+      method: 'GET',
+      headers: {
+        'Authorization': `token ${activeToken}`, // TOKEN IN HEADER
+        'Accept': 'application/vnd.github.v3+json'
+      }
     });
     
+    let sha = '';
     if (fileInfo.ok) {
       const data = await fileInfo.json();
       sha = data.sha;
+    } else if (fileInfo.status !== 404) {
+      // If it's not a "not found" error, throw
+      throw new Error(`Failed to get file info: ${fileInfo.status}`);
     }
     
-    // Save new content
+    // 2. Prepare new content
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(students, null, 2))));
     
+    // 3. Save new content (using HEADER, not URL parameter)
     const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_PATH}`, {
       method: 'PUT',
       headers: {
-        'Authorization': `token ${githubToken}`,
-        'Content-Type': 'application/json'
+        'Authorization': `token ${activeToken}`, // TOKEN IN HEADER
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
       },
       body: JSON.stringify({
         message: 'Update student data from Admin Panel',
@@ -650,10 +670,13 @@ async function saveToGitHub() {
       toast('✅ Saved to GitHub! Website will update in 1-2 minutes', '#3dba7a');
       save(); // Also save to localStorage
     } else {
-      throw new Error('Save failed');
+      const errorData = await response.json();
+      console.error('GitHub API Error:', errorData);
+      throw new Error(errorData.message || 'Save failed');
     }
   } catch (error) {
-    toast('❌ Save failed. Check your token and try again', '#e05353');
+    console.error('Save to GitHub Error:', error);
+    toast(`❌ Save failed: ${error.message}`, '#e05353');
   }
 }
 
