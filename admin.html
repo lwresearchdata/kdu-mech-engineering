@@ -386,10 +386,27 @@
       <div class="form-group">
         <label>Intake *</label>
         <select id="fIntake">
+          <option value="20">Intake 20</option>
+          <option value="21">Intake 21</option>
+          <option value="22">Intake 22</option>
+          <option value="23">Intake 23</option>
+          <option value="24">Intake 24</option>
+          <option value="25">Intake 25</option>
+          <option value="26">Intake 26</option>
+          <option value="27">Intake 27</option>
+          <option value="28">Intake 28</option>
+          <option value="29">Intake 29</option>
+          <option value="30">Intake 30</option>
+          <option value="31">Intake 31</option>
+          <option value="32">Intake 32</option>
+          <option value="33">Intake 33</option>
+          <option value="34">Intake 34</option>
+          <option value="35">Intake 35</option>
+          <option value="36">Intake 36</option>
+          <option value="37">Intake 37</option>
           <option value="38">Intake 38</option>
-          <option value="39">Intake 39</option>
+          <option value="39" selected>Intake 39</option>
           <option value="40">Intake 40</option>
-          <option value="41">Intake 41</option>
         </select>
       </div>
       <div class="form-group">
@@ -455,10 +472,27 @@
       <input type="text" id="tableSearch" placeholder="🔍 Search name or reg. no..." oninput="renderTable()" />
       <select id="tableIntake" onchange="renderTable()" style="width:130px;">
         <option value="">All Intakes</option>
+        <option value="20">Intake 20</option>
+        <option value="21">Intake 21</option>
+        <option value="22">Intake 22</option>
+        <option value="23">Intake 23</option>
+        <option value="24">Intake 24</option>
+        <option value="25">Intake 25</option>
+        <option value="26">Intake 26</option>
+        <option value="27">Intake 27</option>
+        <option value="28">Intake 28</option>
+        <option value="29">Intake 29</option>
+        <option value="30">Intake 30</option>
+        <option value="31">Intake 31</option>
+        <option value="32">Intake 32</option>
+        <option value="33">Intake 33</option>
+        <option value="34">Intake 34</option>
+        <option value="35">Intake 35</option>
+        <option value="36">Intake 36</option>
+        <option value="37">Intake 37</option>
         <option value="38">Intake 38</option>
         <option value="39">Intake 39</option>
         <option value="40">Intake 40</option>
-        <option value="41">Intake 41</option>
       </select>
       <select id="tableProgram" onchange="renderTable()" style="width:140px;">
         <option value="">All Programmes</option>
@@ -675,7 +709,7 @@ function importJSON(e) {
       data.forEach(s => {
         if (s.name && s.regNo) {
           const exists = students.find(existing => existing.regNo === s.regNo);
-          if (!exists) { students.push({ name: s.name, regNo: s.regNo, linkedin: s.linkedin||'', program: s.program||'ME', intake: s.intake||39, photo: s.photo||'' }); added++; }
+          if (!exists) { students.push({ name: s.name, regNo: s.regNo, linkedin: s.linkedin||'', program: s.program||'ME', intake: s.intake||38, photo: s.photo||'' }); added++; }
         }
       });
       save();
