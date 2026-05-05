@@ -564,15 +564,44 @@ function toast(msg, color = '#3dba7a') {
 }
 
 // ---- PHOTO ----
-function previewPhoto(e) {
-  const file = e.target.files[0];
+function autoUploadPhoto(event) {
+  const file = event.target.files[0];
   if (!file) return;
-  if (file.size > 2 * 1024 * 1024) { toast('Photo must be under 2MB', '#e05353'); return; }
+  
+  if (file.size > 2 * 1024 * 1024) {
+    toast('Photo must be under 2MB', '#e05353');
+    return;
+  }
+  
+  // Get form data to generate filename
+  const regNo = document.getElementById('fRegNo').value.trim();
+  const name = document.getElementById('fName').value.trim();
+  const intake = document.getElementById('fIntake').value;
+  
+  if (!regNo) {
+    toast('Please enter Registration Number first', '#e05353');
+    return;
+  }
+  
+  // Generate filename: RegNo_Intake.jpg
+  const cleanRegNo = regNo.replace(/[\/\\:*?"<>|]/g, '_');
+  const filename = `${cleanRegNo}_Intake${intake}.jpg`;
+  
+  // Create image preview
   const reader = new FileReader();
   reader.onload = ev => {
     document.getElementById('photoPreview').src = ev.target.result;
     document.getElementById('photoPreview').style.display = 'block';
-    document.getElementById('fPhotoData').value = ev.target.result;
+    
+    // Store as relative path instead of Base64
+    const photoPath = `images/students/intake${intake}/${filename}`;
+    document.getElementById('fPhotoData').value = photoPath;
+    
+    document.getElementById('uploadStatus').innerHTML = 
+      `✓ Photo path: ${photoPath}<br>
+       <small style="color:#8a9ab5;">📌 After saving student, upload this photo to GitHub at this exact location</small>`;
+    
+    toast(`Photo set for: ${filename}`);
   };
   reader.readAsDataURL(file);
 }
