@@ -508,12 +508,12 @@
 <div class="hero">
   <div class="hero-badge">Est. Department of Mechanical Engineering</div>
   <h1>Student Directory</h1>
-  <div class="hero-sub">Intakes 38 &amp; 39</div>
+  <div class="hero-sub">Intakes 20 – 40</div>
   <p>BSc (Hons) Mechanical Engineering &amp; BSc (Hons) Mechatronics Engineering</p>
   <div class="hero-stats">
     <div class="stat"><span class="stat-num" id="statTotal">100</span><span class="stat-label">Students</span></div>
     <div class="stat"><span class="stat-num">2</span><span class="stat-label">Programmes</span></div>
-    <div class="stat"><span class="stat-num">2</span><span class="stat-label">Intakes</span></div>
+    <div class="stat"><span class="stat-num" id="statIntakes">2</span><span class="stat-label">Intakes</span></div>
   </div>
 </div>
 
@@ -522,8 +522,6 @@
   <span class="filter-label">Intake</span>
   <div class="filter-group" id="intakeFilters">
     <button class="filter-btn active" data-intake="all">All</button>
-    <button class="filter-btn" data-intake="38">Intake 38</button>
-    <button class="filter-btn" data-intake="39">Intake 39</button>
   </div>
 
   <span class="filter-label" style="margin-left:1rem;">Programme</span>
@@ -561,6 +559,12 @@
 // ---- DATA ----
 let students = [];
 
+// Intake number → approximate academic year (Intake 20 started ~2003, +1 year per intake)
+// KDU started engineering ~intake 20 ≈ year 2003
+function intakeYear(n) {
+  return 2003 + (n - 20);
+}
+
 async function loadData() {
   const stored = localStorage.getItem('kdu_students');
   if (stored) {
@@ -569,7 +573,31 @@ async function loadData() {
     const res = await fetch('students_data.json');
     students = await res.json();
   }
+  buildIntakeButtons();
   render();
+}
+
+// ---- BUILD INTAKE FILTER BUTTONS DYNAMICALLY ----
+function buildIntakeButtons() {
+  const intakesPresent = [...new Set(students.map(s => s.intake))].sort((a, b) => a - b);
+  const container = document.getElementById('intakeFilters');
+  // Keep the "All" button, add one per intake found
+  intakesPresent.forEach(n => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.dataset.intake = String(n);
+    btn.textContent = `Intake ${n}`;
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-intake]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterIntake = btn.dataset.intake;
+      render();
+    });
+    container.appendChild(btn);
+  });
+
+  // Update hero intakes count
+  document.getElementById('statIntakes').textContent = intakesPresent.length;
 }
 
 // ---- FILTERS STATE ----
@@ -577,13 +605,11 @@ let filterIntake = 'all';
 let filterProgram = 'all';
 let searchQuery = '';
 
-document.querySelectorAll('[data-intake]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('[data-intake]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    filterIntake = btn.dataset.intake;
-    render();
-  });
+document.querySelector('[data-intake="all"]').addEventListener('click', function() {
+  document.querySelectorAll('[data-intake]').forEach(b => b.classList.remove('active'));
+  this.classList.add('active');
+  filterIntake = 'all';
+  render();
 });
 
 document.querySelectorAll('[data-program]').forEach(btn => {
@@ -615,7 +641,7 @@ function programLabel(code) {
   return code === 'ME' ? 'BSc Mechanical Engineering' : 'BSc Mechatronics Engineering';
 }
 
-function cardHTML(s, idx) {
+function cardHTML(s, globalIdx, animIdx) {
   const photoEl = s.photo
     ? `<img src="${s.photo}" alt="${s.name}" loading="lazy" style="width:100%;aspect-ratio:1;object-fit:cover;" />`
     : `<div class="photo-placeholder"><span class="placeholder-hat">🎓</span><span style="font-size:0.65rem;color:#8a9ab5;letter-spacing:1px;">BSc Eng Hons</span></div>`;
@@ -625,7 +651,7 @@ function cardHTML(s, idx) {
     : '';
 
   return `
-    <div class="student-card" style="animation-delay:${idx * 0.03}s" onclick="openModal(${idx})">
+    <div class="student-card" style="animation-delay:${animIdx * 0.03}s" onclick="openModal(${globalIdx})">
       ${photoEl}
       <div class="card-body">
         <div class="card-reg">${s.regNo}</div>
@@ -651,14 +677,13 @@ function render() {
 
   // Group by intake then program
   const groups = {};
-  filtered.forEach((s, i) => {
-    const key = `${s.intake}_${s.program}`;
+  filtered.forEach(s => {
+    const key = `${String(s.intake).padStart(3,'0')}_${s.program}`;
     if (!groups[key]) groups[key] = { intake: s.intake, program: s.program, items: [] };
     groups[key].items.push({ s, globalIdx: students.indexOf(s) });
   });
 
   const sortedKeys = Object.keys(groups).sort();
-  let html = '';
 
   // Group by intake
   const byIntake = {};
@@ -668,11 +693,15 @@ function render() {
     byIntake[g.intake].push(g);
   });
 
-  Object.keys(byIntake).sort().forEach(intake => {
+  let animCounter = 0;
+  let html = '';
+
+  Object.keys(byIntake).sort((a,b) => Number(a) - Number(b)).forEach(intake => {
+    const yr = intakeYear(Number(intake));
     html += `<div class="intake-section">
       <div class="intake-header">
         <div class="intake-badge">Intake ${intake}</div>
-        <div class="intake-title">Academic Year ${intake == 38 ? '2021' : '2022'} Cohort</div>
+        <div class="intake-title">Academic Year ${yr} Cohort</div>
         <div class="intake-count">${byIntake[intake].reduce((a,g)=>a+g.items.length,0)} students</div>
       </div>
     </div>`;
@@ -682,7 +711,7 @@ function render() {
         <div class="program-label ${g.program.toLowerCase()}">${programLabel(g.program)} &nbsp;—&nbsp; ${g.items.length} students</div>
       </div>
       <div class="students-grid">
-        ${g.items.map((item, i) => cardHTML(item.s, i)).join('')}
+        ${g.items.map(item => cardHTML(item.s, item.globalIdx, animCounter++)).join('')}
       </div>`;
     });
   });
