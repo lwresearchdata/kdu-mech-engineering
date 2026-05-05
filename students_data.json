@@ -1,0 +1,802 @@
+[
+  {
+    "name": "PS Edirisinghe",
+    "regNo": "C/ENG/21/6088/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "AMSS Athapaththu",
+    "regNo": "C/ENG/21/6096/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "BHSS De Silva",
+    "regNo": "C/ENG/21/6099/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "WND Fernando",
+    "regNo": "C/ENG/21/6100/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "HGD Theekshana",
+    "regNo": "C/ENG/21/6104/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "PVK Imesh",
+    "regNo": "C/ENG/21/6111/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "PKRJ Jayasinghe",
+    "regNo": "C/ENG/21/6114/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "VK Jayathunga",
+    "regNo": "C/ENG/21/6124/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "DMLS Wijesinghe",
+    "regNo": "C/ENG/21/6129/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "ALA Rohanapura",
+    "regNo": "C/ENG/21/6131/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "MAH Viduranga",
+    "regNo": "C/ENG/21/6132/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "KD Minuwangoda",
+    "regNo": "C/ENG/21/6134/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "RR Dadigama",
+    "regNo": "D/ENG/21/0011/ME",
+    "linkedin": "https://www.linkedin.com/in/randima-dadigama/",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "BER Goonetilleke",
+    "regNo": "D/ENG/21/0013/ME",
+    "linkedin": "https://www.linkedin.com/in/brendon-goonetilleke-b5090a2b0/",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "HMADPL Karunarathna",
+    "regNo": "D/ENG/21/0018/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "T Thiranagama",
+    "regNo": "D/ENG/21/0019/ME",
+    "linkedin": "https://www.linkedin.com/in/thisura-thiranagama/",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "AR Hapugaskumbura",
+    "regNo": "D/ENG/21/0024/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "TN Kumarasinghe",
+    "regNo": "D/ENG/21/0063/ME",
+    "linkedin": "https://www.linkedin.com/in/thamalu-kumarasinghe/",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "PAC Padmaperuma",
+    "regNo": "D/ENG/21/0066/ME",
+    "linkedin": "https://www.linkedin.com/in/chamathpad01/",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "GGLBB Premasiri",
+    "regNo": "D/ENG/21/0084/ME",
+    "linkedin": "https://www.linkedin.com/in/bhanuka-bandara-80705220b/",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "RMC Jayasekara",
+    "regNo": "D/ENG/21/0106/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "WNAS Devmina",
+    "regNo": "D/ENG/21/0145/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "DKVL Dickovita",
+    "regNo": "D/ENG/21/0147/ME",
+    "linkedin": "https://www.linkedin.com/in/vinuja-lochana/",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "LEM Arachchi",
+    "regNo": "D/ENG/21/0150/ME",
+    "linkedin": "https://www.linkedin.com/in/lumbinieranda/",
+    "program": "ME",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "MDD Perera",
+    "regNo": "C/ENG/21/6119/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "SWHS Mendis",
+    "regNo": "C/ENG/21/6123/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "Twizeyumukiza Steven",
+    "regNo": "F/ENG/21/6274/MC",
+    "linkedin": "https://www.linkedin.com/in/twizeyumukiza-steven-4b429a317/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "Umubyeyi Pascaline",
+    "regNo": "F/ENG/21/6275/MC",
+    "linkedin": "https://www.linkedin.com/in/pascaline-umubyeyi-209654212/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "OBH Thanthreege",
+    "regNo": "D/ENG/21/0001/MC",
+    "linkedin": "https://www.linkedin.com/in/bodima-thanthree/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "DV Lokuranamuka",
+    "regNo": "D/ENG/21/0004/MC",
+    "linkedin": "https://www.linkedin.com/in/dinul-lokuranamuka/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "THL Devapriya",
+    "regNo": "D/ENG/21/0008/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "M Vidurka",
+    "regNo": "D/ENG/21/0010/MC",
+    "linkedin": "https://www.linkedin.com/in/vidurka-maheswaran/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "WLS Wickramaarachchi",
+    "regNo": "D/ENG/21/0021/MC",
+    "linkedin": "https://www.linkedin.com/in/lasindu-wick/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "LLD Perera",
+    "regNo": "D/ENG/21/0025/MC",
+    "linkedin": "https://www.linkedin.com/in/lakjaya-perera-649a54220/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "KDW Silva",
+    "regNo": "D/ENG/21/0036/MC",
+    "linkedin": "https://www.linkedin.com/in/weeksha-silva-70776a349/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "KWRMGSB Pilapitiya",
+    "regNo": "D/ENG/21/0045/MC",
+    "linkedin": "https://www.linkedin.com/in/sudeepa-pilapitiya-859168262/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "ESM Perera",
+    "regNo": "D/ENG/21/0048/MC",
+    "linkedin": "https://www.linkedin.com/in/esala-perera-934404227/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "HKS Pushkara",
+    "regNo": "D/ENG/21/0051/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "IRG Wijerathna",
+    "regNo": "D/ENG/21/0054/MC",
+    "linkedin": "https://www.linkedin.com/in/ravija-wijerathna/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "HMSN Herath",
+    "regNo": "D/ENG/21/0069/MC",
+    "linkedin": "https://www.linkedin.com/in/sandali-herath-b39383283/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "GRA Senaratne",
+    "regNo": "D/ENG/21/0072/MC",
+    "linkedin": "https://www.linkedin.com/in/gayantha-senaratne-682532274/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "RMGI Rajapaksha",
+    "regNo": "D/ENG/21/0075/MC",
+    "linkedin": "https://www.linkedin.com/in/gayunima/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "DGNS Deraniyagala",
+    "regNo": "D/ENG/21/0080/MC",
+    "linkedin": "https://www.linkedin.com/in/nuvinduderaniyagala/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "UAND Ubeysiriwardhane",
+    "regNo": "D/ENG/21/0083/MC",
+    "linkedin": "https://www.linkedin.com/in/nipuna-ubeysiriwardhane-11b689205/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "ML Saputantri",
+    "regNo": "D/ENG/21/0089/MC",
+    "linkedin": "https://www.linkedin.com/in/movindu-saputantri/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "EGSV Eldeniya",
+    "regNo": "D/ENG/21/0093/MC",
+    "linkedin": "https://www.linkedin.com/in/subodhi-eldeniya0093/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "JACA Perera",
+    "regNo": "D/ENG/21/0098/MC",
+    "linkedin": "https://www.linkedin.com/in/chamil-perera-28a743263/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "JADI Priyashan",
+    "regNo": "D/ENG/21/0102/MC",
+    "linkedin": "https://www.linkedin.com/in/priyashan-jayakody-97366b200/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "GK Dhananjaya",
+    "regNo": "D/ENG/21/0110/MC",
+    "linkedin": "https://www.linkedin.com/in/kaveesha-dhananjaya-270531239/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "RB Wickramarachchi",
+    "regNo": "D/ENG/21/0113/MC",
+    "linkedin": "https://www.linkedin.com/in/ravini-wickramarachchi/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "SS Gamage",
+    "regNo": "D/ENG/21/0115/MC",
+    "linkedin": "https://www.linkedin.com/in/sandaru-gamage/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "VR Walpola",
+    "regNo": "D/ENG/21/0126/MC",
+    "linkedin": "https://www.linkedin.com/in/vinuji-walpola/",
+    "program": "MC",
+    "intake": 38,
+    "photo": ""
+  },
+  {
+    "name": "JAUW Jayasinghe",
+    "regNo": "C/ENG/22/6373/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "EAPR Jayantha",
+    "regNo": "C/ENG/22/6380/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "SDA Shavinda",
+    "regNo": "C/ENG/22/6125/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "MAH Viduranga",
+    "regNo": "C/ENG/21/6132/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "De Alwis WLNC",
+    "regNo": "D/ENG/22/0009/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "AGAA Nadeesha",
+    "regNo": "D/ENG/22/0012/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "MWKTK Ranasinghe",
+    "regNo": "D/ENG/22/0022ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "MJ Gunawardhana",
+    "regNo": "D/ENG/22/0025/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "NSM Perera",
+    "regNo": "D/ENG/22/0030/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "MPS Peiris",
+    "regNo": "D/ENG/22/0044/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "KDR Senarathna",
+    "regNo": "D/ENG/22/0054/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "SHRL Darmakeerthi",
+    "regNo": "D/ENG/22/0058/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "HVCR Priyankara",
+    "regNo": "D/ENG/22/0062/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "PGHP Madhuranga ",
+    "regNo": "D/ENG/22/0063/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "AGT Hesara",
+    "regNo": "D/ENG/22/0083/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "GKM De Zoysa",
+    "regNo": "D/ENG/22/0091/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "WKPDS Gunasekara",
+    "regNo": "D/ENG/22/0096/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "MSN Munasinghe",
+    "regNo": "D/ENG/22/0106/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "MNLP Liyanage",
+    "regNo": "D/ENG/22/0108/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "WMPA Andrady",
+    "regNo": "F/ENG/22/001/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "TP Perera",
+    "regNo": "F/ENG/22/003/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "RN PERERA",
+    "regNo": "D/ENG/21/0030/ME",
+    "linkedin": "",
+    "program": "ME",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "AMKGMRB Abeysinghe",
+    "regNo": "C/ENG/22/6363/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "IDS Dilshan",
+    "regNo": "C/ENG/22/6374/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "GGLUJ Gabbela",
+    "regNo": "D/ENG/22/0006/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "RAK Deshan",
+    "regNo": "D/ENG/22/0007/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "CT Somirathna",
+    "regNo": "D/ENG/22/0018/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "SL Widanagama",
+    "regNo": "D/ENG/22/0033/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "KPTSS De Silva",
+    "regNo": "D/ENG/22/0034/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "GGSG Guruluwana",
+    "regNo": "D/ENG/22/0042/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "SEPH Senevirathna",
+    "regNo": "D/ENG/22/0048/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "SMGJV Subhasinghe",
+    "regNo": "D/ENG/22/0053/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "SD Wanniarachchci",
+    "regNo": "D/ENG/22/0064/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "Suraweera SADRP",
+    "regNo": "D/ENG/22/0067/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "WASDW Arachchi",
+    "regNo": "D/ENG/22/0073/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "TSD Siriwardana",
+    "regNo": "D/ENG/22/0081/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "HH Guniyangoda",
+    "regNo": "D/ENG/22/0094/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "NPPN Nanayakkara",
+    "regNo": "D/ENG/22/0113/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "JAH Ravihansa",
+    "regNo": "D/ENG/22/0119/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "DMKMT Madawalage",
+    "regNo": "D/ENG/22/0121/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "WNCS Peiris",
+    "regNo": "D/ENG/22/0122/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "Dilshan GWTS",
+    "regNo": "D/ENG/22/0123/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "RL Perera",
+    "regNo": "D/ENG/22/0133/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "GKRP Kodithuwakku",
+    "regNo": "D/ENG/22/0134/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "S Leninnath",
+    "regNo": "D/ENG/22/0135/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "MMVS Peiris",
+    "regNo": "D/ENG/22/0140/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "KANSS Kandamulla",
+    "regNo": "D/ENG/22/0141/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  },
+  {
+    "name": "AMCJB Athapatthu    ",
+    "regNo": "F/ENG/22/004/MC",
+    "linkedin": "",
+    "program": "MC",
+    "intake": 39,
+    "photo": ""
+  }
+]
